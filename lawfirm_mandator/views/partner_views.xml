@@ -57,6 +57,7 @@
         <field name="res_model">lawfirm_case.case</field>
         <field name="view_mode">tree,form,kanban</field>
         <field name="context">{'search_default_partner_id': active_id, 'default_partner_id': active_id}</field>
+        <field name="domain">[('partner_id', '=', active_id)]</field>
         <field name="view_id" ref="case_view_tree"/>
 
         <field name="help" type="html">

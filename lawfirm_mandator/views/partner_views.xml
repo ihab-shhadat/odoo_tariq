@@ -1,10 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+
+    <record id="view_lawfirm_case_case_kanban" model="ir.ui.view">
+        <field name="name">lawfirm_case.case.kanban</field>
+        <field name="model">lawfirm_case.case</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_mobile">
+                <field name="case_seq"/>
+                <field name="case_office"/>
+                <field name="case_num"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_global_click">
+                            <div class="row">
+                                <div class="col-6">
+                                    <strong>
+                                        <field name="case_seq"/>
+                                    </strong>
+                                </div>
+                                <div class="col-6 text-right">
+                                    <field name="degree_litigation"/>
+                                    <field name="case_type"/>
+
+                                </div>
+                            </div>
+                            <div>
+                                <field name="court_name"/>
+                                <field name="case_subject"/>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="case_view_tree" model="ir.ui.view">
+        <field name="name">lawfirm_case.case.tree</field>
+        <field name="model">lawfirm_case.case</field>
+        <field name="arch" type="xml">
+            <tree string="Products" sample="1">
+                <field name="case_seq"/>
+                <field name="case_office"/>
+                <field name="case_num"/>
+                <field name="degree_litigation"/>
+                <field name="case_type"/>
+                <field name="court_name"/>
+                <field name="case_subject"/>
+                <field name="case_type"/>
+            </tree>
+        </field>
+    </record>
+
     <record id="act_res_partner_case" model="ir.actions.act_window">
         <field name="name">Cases</field>
         <field name="res_model">lawfirm_case.case</field>
-        <field name="view_mode">tree,form,graph</field>
+        <field name="view_mode">tree,form,kanban</field>
         <field name="context">{'search_default_partner_id': active_id, 'default_partner_id': active_id}</field>
+        <field name="view_id" ref="case_view_tree"/>
+
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Create a new quotation, the first step of a new sale!
